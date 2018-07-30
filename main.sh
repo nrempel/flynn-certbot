@@ -13,6 +13,7 @@ certbot certonly \
   --logs-dir /app/logs \
   --agree-tos \
   --no-eff-email \
+  --test-cert \
   --dns-digitalocean \
   --email "$EMAIL" \
   --dns-digitalocean-credentials /app/digitalocean.ini \

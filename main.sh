@@ -3,6 +3,7 @@ DOMAINS_ARRAY=(${DOMAINS//,/ })
 CERTBOT_COMMAND_STRING=""
 for i in "${DOMAINS_ARRAY[@]}"
 do
+    # Make a string like '-d <domain 1> -d <domain 2>
     CERTBOT_COMMAND_STRING="-d $i $CERTBOT_COMMAND_STRING"
 done
 

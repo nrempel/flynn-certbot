@@ -1,8 +1,9 @@
 # Install flynn-cli
-L=/usr/local/bin/flynn && curl -sSL -A "`uname -sp`" https://dl.flynn.io/cli | zcat >$L && chmod +x $L
+export FLYNN_CMD="/app/flynn"
+L="$FLYNN_CMD" && curl -sSL -A "`uname -sp`" https://dl.flynn.io/cli | zcat >$L && chmod +x $L
 
 # Add cluster
-flynn cluster add -p "$FLYNN_TLS_PIN" default "$FLYNN_CLUSTER_HOST" "$FLYNN_CONTROLLER_KEY"
+"$FLYNN_CMD" cluster add -p "$FLYNN_TLS_PIN" default "$FLYNN_CLUSTER_HOST" "$FLYNN_CONTROLLER_KEY"
 
 if [ "CERTBOT_DNS_PLUGIN" != "digitalocean" ]; then
    echo "CERTBOT_DNS_PLUGIN only supports 'digitalocean'";

@@ -5,7 +5,7 @@ L="$FLYNN_CMD" && curl -sSL -A "`uname -sp`" https://dl.flynn.io/cli | zcat >$L 
 # Add cluster
 "$FLYNN_CMD" cluster add -p "$FLYNN_TLS_PIN" default "$FLYNN_CLUSTER_HOST" "$FLYNN_CONTROLLER_KEY"
 
-if [ "CERTBOT_DNS_PLUGIN" != "digitalocean" ]; then
+if [ "$CERTBOT_DNS_PLUGIN" != "digitalocean" ]; then
    echo "CERTBOT_DNS_PLUGIN only supports 'digitalocean'";
    exit 1;
 fi

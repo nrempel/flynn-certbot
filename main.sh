@@ -2,7 +2,6 @@ FLYNN_CMD="/app/flynn"
 CERTBOT_WORK_DIR="/app"
 CERTBOT_CONFIG_DIR="/app/config"
 
-
 # Validation
 if [ -z "$CERTBOT_DNS_PLUGIN" ]; then
     echo "CERTBOT_DNS_PLUGIN must be set"
@@ -80,7 +79,6 @@ certbot certonly \
   --logs-dir "$CERTBOT_WORK_DIR/logs" \
   --agree-tos \
   --no-eff-email \
-  --test-cert \
   --dns-digitalocean \
   --email "$EMAIL" \
   --dns-digitalocean-credentials "$DIGITAL_OCEAN_SECRET_PATH" \
@@ -115,8 +113,7 @@ do
     certbot renew \
         --work-dir "$CERTBOT_WORK_DIR" \
         --config-dir "$CERTBOT_CONFIG_DIR" \
-        --logs-dir "$CERTBOT_WORK_DIR/logs" \
-        --test-cert \
+        --logs-dir "$CERTBOT_WORK_DIR/logs"
 
     sleep 60
 done

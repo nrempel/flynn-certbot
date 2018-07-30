@@ -1,1 +1,1 @@
-clock: ./setup.sh && ./main.sh
+clock: ./main.sh

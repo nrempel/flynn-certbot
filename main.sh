@@ -13,5 +13,6 @@ certbot certonly \
   --logs-dir /app/logs \
   --dns-digitalocean \
   --email "$EMAIL" \
+  --agree-tos \
   --dns-digitalocean-credentials "$DIGITAL_OCEAN_SECRET_PATH" \
   "$CERTBOT_COMMAND_STRING"

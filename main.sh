@@ -14,5 +14,6 @@ certbot certonly \
   --dns-digitalocean \
   --email "$EMAIL" \
   --agree-tos \
+  --no-eff-email \
   --dns-digitalocean-credentials "$DIGITAL_OCEAN_SECRET_PATH" \
   "$CERTBOT_COMMAND_STRING"

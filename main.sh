@@ -1,6 +1,6 @@
 while true
 do
-    echo "Renewing..."
+    echo "Renewing certificate..."
     certbot renew \
         --work-dir /app \
         --config-dir /app/config \

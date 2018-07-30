@@ -1,2 +1,2 @@
 certbot==0.26.1
-certbot-dns-digitalocean=0.26.1
+certbot-dns-digitalocean==0.26.1

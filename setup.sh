@@ -54,6 +54,6 @@ do
     fi
 
     "$FLYNN_CMD" -a $APP_NAME route update $ROUTE_ID \
-        --tls-cert /app/config/live/$DOMAIN-0001/fullchain.pem \
-        --tls-key /app/config/live/$DOMAIN-0001/privkey.pem
+        --tls-cert /app/config/live/$DOMAIN/fullchain.pem \
+        --tls-key /app/config/live/$DOMAIN/privkey.pem
 done

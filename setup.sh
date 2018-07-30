@@ -12,6 +12,6 @@ fi
 
 # Create file needed for certbot
 export DIGITAL_OCEAN_SECRET_PATH="/app/digitalocean.ini"
-cat "dns_digitalocean_token = $DIGITAL_OCEAN_API_KEY" > "$DIGITAL_OCEAN_SECRET_PATH"
+cat "dns_digitalocean_token = $DIGITAL_OCEAN_API_KEY > $DIGITAL_OCEAN_SECRET_PATH"
 chmod 600 digitalocean.ini
 

@@ -9,11 +9,11 @@ done
 
 certbot certonly \
   --work-dir /app \
-  --config-dir /app \
+  --config-dir /app/config \
   --logs-dir /app/logs \
-  --dns-digitalocean \
-  --email "$EMAIL" \
   --agree-tos \
   --no-eff-email \
-  --dns-digitalocean-credentials "$DIGITAL_OCEAN_SECRET_PATH" \
+  --dns-digitalocean \
+  --email "$EMAIL" \
+  --dns-digitalocean-credentials /app/digitalocean.ini \
   "$CERTBOT_COMMAND_STRING"

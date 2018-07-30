@@ -12,7 +12,7 @@ FLYNN_CLUSTER_HOST = os.environ.get("FLYNN_CLUSTER_HOST")
 def renew():
     call(
         [
-            "flynn",
+            "/app/flynn",
             "cluster",
             "add",
             "-p",

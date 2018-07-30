@@ -7,7 +7,7 @@ import schedule
 def renew():
     call(
         [
-            'L=/usr/local/bin/flynn && curl -sSL -A "`uname -sp`" https://dl.flynn.io/cli | zcat >$L && chmod +x $L'
+            'L=./flynn && curl -sSL -A "`uname -sp`" https://dl.flynn.io/cli | zcat >$L && chmod +x $L'
         ]
     )
 

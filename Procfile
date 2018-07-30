@@ -1,1 +1,1 @@
-clock: python main.py
+clock: L=/app/flynn && curl -sSL -A "`uname -sp`" https://dl.flynn.io/cli | zcat >$L && chmod +x $L && python main.py

@@ -1,20 +1,32 @@
+import os
 import time
 from subprocess import call
 
 import schedule
 
+FLYNN_TLS_PIN = os.environ.get("FLYNN_TLS_PIN")
+FLYNN_CONTROLLER_KEY = os.environ.get("FLYNN_CONTROLLER_KEY")
+FLYNN_CLUSTER_HOST = os.environ.get("FLYNN_CLUSTER_HOST")
+
 
 def renew():
     call(
         [
-            'L=/app/flynn && curl -sSL -A "`uname -sp`" https://dl.flynn.io/cli | zcat >$L && chmod +x $L'
+            "flynn",
+            "cluster",
+            "add",
+            "-p",
+            FLYNN_TLS_PIN,
+            "default",
+            FLYNN_CLUSTER_HOST,
+            FLYNN_CONTROLLER_KEY,
         ]
     )
 
 
 if __name__ == "__main__":
     renew()
-    schedule.every(10).minutes.do(renew)
+    schedule.every(10).seconds.do(renew)
     while True:
         schedule.run_pending()
         time.sleep(1)

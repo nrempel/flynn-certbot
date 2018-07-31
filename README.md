@@ -12,9 +12,9 @@ Currently, this only works for clusters hosted on Digital Ocean.
 
 Since Flynn does not support persistent volumes, every time the process starts it issues a certificate then begins watching to renew the certificate. Due to [Let's Encrypt rate limits](https://letsencrypt.org/docs/rate-limits/), this can only happen 20 times per week.
 
-If you scale deployment past a single process, you may see problems.
-
 Scaling the process will trigger this. Changing environment variables will trigger this. Deployments will trigger this. I recommend double checking your configuration is correct before scaling up the process.
+
+If you scale deployment past a single process, you may see problems.
 
 You've been warned!
 
@@ -71,3 +71,10 @@ openssl s_client -connect controller.$CLUSTER_DOMAIN:443 \
 ```
 
 Where $CLUSTER_DOMAIN is the domain for your cluster.
+
+
+Finally, when you're ready, push this repository to your flynn remote then scale it to 1 process (exactly).
+
+If everything goes well, all of the domains in $DOMAINS should now support https routes with a valid certificate!
+
+🍻

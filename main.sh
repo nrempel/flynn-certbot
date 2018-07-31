@@ -68,8 +68,7 @@ do
     DOMAIN="${DOMAINS_ARRAY[1]}"
     echo "$DOMAIN..."
     # Make a string like '-d <domain 1> -d <domain 2>
-    CERTBOT_COMMAND_STRING=" \
-        -d $DOMAIN $CERTBOT_COMMAND_STRING"
+    CERTBOT_COMMAND_STRING="-d $DOMAIN $CERTBOT_COMMAND_STRING \"
 done
 echo "done"
 

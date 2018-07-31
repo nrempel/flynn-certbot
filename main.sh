@@ -68,13 +68,13 @@ do
     DOMAIN="${DOMAINS_ARRAY[1]}"
     echo "$DOMAIN..."
     # Make a string like '-d <domain 1> -d <domain 2>
-    CERTBOT_COMMAND_STRING="-d $DOMAIN $CERTBOT_COMMAND_STRING "
+    CERTBOT_COMMAND_STRING="-d $DOMAIN \
+        $CERTBOT_COMMAND_STRING"
 done
 echo "done"
 
 echo "Generating certificate for domains..."
 echo "certbot certonly \
-        $CERTBOT_COMMAND_STRING \
         --work-dir $CERTBOT_WORK_DIR \
         --config-dir $CERTBOT_CONFIG_DIR \
         --logs-dir $CERTBOT_WORK_DIR/logs \
@@ -82,10 +82,10 @@ echo "certbot certonly \
         --no-eff-email \
         --dns-digitalocean \
         --email $EMAIL \
-        --dns-digitalocean-credentials $DIGITAL_OCEAN_SECRET_PATH"
+        --dns-digitalocean-credentials $DIGITAL_OCEAN_SECRET_PATH \
+        $CERTBOT_COMMAND_STRING"
 
 certbot certonly \
-"$CERTBOT_COMMAND_STRING" \
   --work-dir "$CERTBOT_WORK_DIR" \
   --config-dir "$CERTBOT_CONFIG_DIR" \
   --logs-dir "$CERTBOT_WORK_DIR/logs" \
@@ -93,8 +93,8 @@ certbot certonly \
   --no-eff-email \
   --dns-digitalocean \
   --email "$EMAIL" \
-  --dns-digitalocean-credentials "$DIGITAL_OCEAN_SECRET_PATH"
-  
+  --dns-digitalocean-credentials "$DIGITAL_OCEAN_SECRET_PATH" \
+  "$CERTBOT_COMMAND_STRING"
 
 echo "Updating Flynn routes..."
 for ROUTE_DOMAIN_PAIR in "${DOMAINS_PAIRS_ARRAY[@]}"

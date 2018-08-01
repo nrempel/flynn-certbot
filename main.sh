@@ -97,6 +97,10 @@ certbot certonly \
   -d "$COMMA_DOMAINS"
 
 echo "Updating Flynn routes..."
+# First domain is used as directory path
+FIRST_DOMAIN_PAIR="${DOMAINS_PAIRS_ARRAY[0]}"
+PAIR_ARRAY=(${FIRST_DOMAIN_PAIR//:/ })
+FIRST_DOMAIN="${PAIR_ARRAY[1]}"
 for ROUTE_DOMAIN_PAIR in "${DOMAINS_PAIRS_ARRAY[@]}"
 do
     # Get app name and domain from app:domain pair
@@ -114,8 +118,8 @@ do
 
     echo "Updating route '$DOMAIN' for app '$APP_NAME'..."
     "$FLYNN_CMD" -a "$APP_NAME" route update "$ROUTE_ID" \
-        --tls-cert "$CERTBOT_CONFIG_DIR/live/$DOMAIN/fullchain.pem" \
-        --tls-key "$CERTBOT_CONFIG_DIR/live/$DOMAIN/privkey.pem"
+        --tls-cert "$CERTBOT_CONFIG_DIR/live/$FIRST_DOMAIN/fullchain.pem" \
+        --tls-key "$CERTBOT_CONFIG_DIR/live/$FIRST_DOMAIN/privkey.pem"
 done
 echo "done"
 

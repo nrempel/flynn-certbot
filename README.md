@@ -75,6 +75,6 @@ Where $CLUSTER_DOMAIN is the domain for your cluster.
 
 Finally, when you're ready, push this repository to your flynn remote then scale it to 1 process (exactly).
 
-If everything goes well, all of the domains in $DOMAINS should now support https routes with a valid certificate!
+If everything goes well, all of the domains in `$DOMAINS` should now support https routes with a valid certificate!
 
 🍻

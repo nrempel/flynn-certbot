@@ -67,10 +67,10 @@ do
     DOMAINS_ARRAY=(${ROUTE_DOMAIN_PAIR//:/ })
     DOMAIN="${DOMAINS_ARRAY[1]}"
     echo "$DOMAIN..."
-    COMMA_DOMAINS="$DOMAIN,$COMMA_DOMAINS"
+    COMMA_DOMAINS="$COMMA_DOMAINS,$DOMAIN"
 done
 # Trim trailing comma
-COMMA_DOMAINS="${COMMA_DOMAINS::-1}"
+COMMA_DOMAINS="${COMMA_DOMAINS:1}"
 echo "done"
 
 echo "Generating certificate for domains..."

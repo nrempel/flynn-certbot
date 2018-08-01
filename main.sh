@@ -60,15 +60,17 @@ chmod 600 "$DIGITAL_OCEAN_SECRET_PATH"
 # Get domains array
 echo "Collecting domains..."
 DOMAINS_PAIRS_ARRAY=(${DOMAINS//,/ })
-CERTBOT_COMMAND_STRING="-d "
+COMMA_DOMAINS=""
 for ROUTE_DOMAIN_PAIR in "${DOMAINS_PAIRS_ARRAY[@]}"
 do
     # Get domain from route:domain pair
     DOMAINS_ARRAY=(${ROUTE_DOMAIN_PAIR//:/ })
     DOMAIN="${DOMAINS_ARRAY[1]}"
     echo "$DOMAIN..."
-    CERTBOT_COMMAND_STRING="$CERTBOT_COMMAND_STRING,$DOMAIN"
+    COMMA_DOMAINS="$DOMAIN,$COMMA_DOMAINS"
 done
+# Trim trailing comma
+COMMA_DOMAINS="${COMMA_DOMAINS::-1}"
 echo "done"
 
 echo "Generating certificate for domains..."
@@ -81,7 +83,7 @@ echo "certbot certonly \
         --dns-digitalocean \
         --email $EMAIL \
         --dns-digitalocean-credentials $DIGITAL_OCEAN_SECRET_PATH \
-        $CERTBOT_COMMAND_STRING"
+        -d $COMMA_DOMAINS"
 
 certbot certonly \
   --work-dir "$CERTBOT_WORK_DIR" \
@@ -92,7 +94,7 @@ certbot certonly \
   --dns-digitalocean \
   --email "$EMAIL" \
   --dns-digitalocean-credentials "$DIGITAL_OCEAN_SECRET_PATH" \
-  "$CERTBOT_COMMAND_STRING"
+  -d "$COMMA_DOMAINS"
 
 echo "Updating Flynn routes..."
 for ROUTE_DOMAIN_PAIR in "${DOMAINS_PAIRS_ARRAY[@]}"

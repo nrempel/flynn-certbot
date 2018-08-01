@@ -60,16 +60,14 @@ chmod 600 "$DIGITAL_OCEAN_SECRET_PATH"
 # Get domains array
 echo "Collecting domains..."
 DOMAINS_PAIRS_ARRAY=(${DOMAINS//,/ })
-CERTBOT_COMMAND_STRING=""
+CERTBOT_COMMAND_STRING="-d "
 for ROUTE_DOMAIN_PAIR in "${DOMAINS_PAIRS_ARRAY[@]}"
 do
     # Get domain from route:domain pair
     DOMAINS_ARRAY=(${ROUTE_DOMAIN_PAIR//:/ })
     DOMAIN="${DOMAINS_ARRAY[1]}"
     echo "$DOMAIN..."
-    # Make a string like '-d <domain 1> -d <domain 2>
-    CERTBOT_COMMAND_STRING="-d $DOMAIN \
-        $CERTBOT_COMMAND_STRING"
+    CERTBOT_COMMAND_STRING="$CERTBOT_COMMAND_STRING,$DOMAIN"
 done
 echo "done"
 

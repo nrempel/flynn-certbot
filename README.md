@@ -8,7 +8,7 @@ Pull requests with improvements are welcome. For significant changes, create an 
 
 I'm using this tool right now and it works for me but it is not well tested. I would recommend reading the script before following these instructions.
 
-Currently, this only works for clusters hosted on Digital Ocean.
+Currently, this only works for domains hosted on Digital Ocean DNS and CloudFlare DNS.
 
 Since Flynn does not support persistent volumes, every time the process starts it issues a certificate then begins watching to renew the certificate. Due to [Let's Encrypt rate limits](https://letsencrypt.org/docs/rate-limits/), this can only happen 20 times per week.
 
@@ -35,6 +35,9 @@ Only supports digitalocean right now.
 ### DIGITAL_OCEAN_API_KEY
 
 Get one from [https://cloud.digitalocean.com/account/api/tokens](https://cloud.digitalocean.com/account/api/tokens)
+
+### CLOUDFLARE_API_KEY
+Get one from your CloudFlare profile page.
 
 ### DOMAINS
 
